@@ -1,0 +1,29 @@
+
+.homepage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: var(--OFF-BLACK);
+    background-color: var(--OFF-WHITE);
+}
+
+.name-input{
+    text-align: center;
+    font-size: 2.4rem;
+    font-weight: 500;
+    width: 100%;
+    max-width: 40rem;
+    padding: 1rem;
+    margin: 5px;
+    border: 0;
+    color: var(--OFF-BLACK);
+    background-color: transparent;
+    border-bottom: 2px solid var(--OFF-BLACK);
+
+}
+
+.name-input:focus-visible{
+    outline: none;
+}
