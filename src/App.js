@@ -1,10 +1,15 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { Route,Routes } from 'react-router-dom';
+import { HomePage,TaskPage } from './components';
 
 function App() {
   return (
     <div className="App">
-      hello ji
+      <Routes>
+        <Route path="/" element={<HomePage/>}/>
+        <Route path="/tasks" element={<TaskPage/>}/>
+      </Routes>
     </div>
   );
 }
