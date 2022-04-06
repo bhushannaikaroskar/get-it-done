@@ -1,0 +1,38 @@
+
+.taskpage{    
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: var(--OFF-BLACK);
+    padding: 4rem;
+    background-color: var(--OFF-WHITE);
+}
+
+.welcome-message{
+    font-size: 3.2rem;
+    font-weight: 600;
+    padding: 0 0 2rem 0;
+}
+
+.tasks-container{
+    flex-grow: 2;
+    background-color: var(--LIGHT-GREY);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+}
+
+.task-list-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.btn-float{
+    padding: 5px;
+}
+
+.task-list{
+    margin: 2rem 0;
+}

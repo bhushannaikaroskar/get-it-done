@@ -1,0 +1,20 @@
+.task-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.task-title{
+    font-size: 2rem;
+    font-weight: 500;
+    padding-left: 1rem;
+}
+
+.task-item-cta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
