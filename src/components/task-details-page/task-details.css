@@ -1,0 +1,54 @@
+.task-detail-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: var(--OFF-BLACK);
+    padding: 4rem;
+    background-color: var(--OFF-WHITE);
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas: "timer details";
+    grid-template-columns: 1fr 1fr;
+    flex-grow: 2;
+    background-color: var(--LIGHT-GREY);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 1rem;
+}
+
+.pomodoro-timer {
+    grid-area: "timer";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-details-container {
+    grid-area: "details";
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem;
+}
+
+.task-detail-title{
+    font-weight: 700;
+    padding: 1rem 0;
+}
+
+.task-detail-description{
+    font-size: 1.8rem;
+    padding: 1rem 0;
+}
+
+.task-details-cta{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+

@@ -1,15 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
-import { v4 as uuid } from "uuid";
-import "./addtask.css";
+import "../add-task/addtask.css"
 
-export default function AddTask({ toggleModal }) {
+export default function EditTask({toggleModal,id,title:titleValue,description:descValue,time:timeValue,isCompleted}) {
     const { dispatchTaskList } = useTasks();
-    const [title, setTitle] = useState("");
+    const [title, setTitle] = useState(titleValue??"");
     const [titleError, setTitleError] = useState("");
-    const [description, setDescription] = useState("");
+    const [description, setDescription] = useState(descValue??"");
     const [descriptionError, setDescriptionError] = useState("");
-    const [time, setTime] = useState();
+    const [time, setTime] = useState(timeValue??undefined);
     const [timeError, setTimeError] = useState();
 
     const resetTask = () => {
@@ -18,7 +17,7 @@ export default function AddTask({ toggleModal }) {
         setTime();
     };
 
-    const addTask = () => {
+    const editTask = () => {
         if (title.length < 1) {
             setTitleError("Enter Title");
             return;
@@ -41,13 +40,13 @@ export default function AddTask({ toggleModal }) {
         }
 
         dispatchTaskList({
-            type: "ADD_TASK",
+            type: "EDIT_TASK",
             payload: {
-                id: uuid(),
+                id,
                 title,
                 description,
                 time,
-                isCompleted: false,
+                isCompleted,
             },
         });
         toggleModal();
@@ -114,10 +113,10 @@ export default function AddTask({ toggleModal }) {
                         <button
                             className="btn btn-primary card-btn"
                             onClick={() => {
-                                addTask();
+                                editTask();
                             }}
                         >
-                            Add
+                            Edit
                         </button>
                         <button
                             className="btn btn-outline btn-outline-primary card-btn "

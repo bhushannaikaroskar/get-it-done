@@ -9,9 +9,21 @@ const tasksReducer = (state, action) => {
         case "ADD_TASK":
             return [...state, action.payload];
         case "EDIT_TASK":
-            return [...state.map((task)=>task.id === action.payload.id ? action.payload : task)];
+            return [
+                ...state.map((task) =>
+                    task.id === action.payload.id ? {...action.payload} : task
+                ),
+            ];
         case "REMOVE_TASK":
-            return [...state.filter((task)=>task.id !== action.payload.id)];
+            return [...state.filter((task) => task.id !== action.payload.id)];
+        case "TASK_COMPLETE":
+            return [
+                ...state.map((task) =>
+                    task.id === action.payload.id
+                        ? { ...task, isCompleted: !task.isCompleted }
+                        : task
+                ),
+            ];
         default:
             return state;
     }
