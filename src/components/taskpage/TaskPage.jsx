@@ -1,12 +1,18 @@
-
+import React, { useState } from "react";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
 import { useUser } from "../../context/user-context/UserProvider";
+import AddTask from "../add-task/AddTask";
 import TaskItem from "../task-item/TaskItem";
 import "./taskpage.css";
 
 export default function TaskPage() {
     const { user } = useUser();
     const { taskList} = useTasks();
+    const [isModal, setIsModal] = useState();
+
+    const toggleModal = () => {
+        setIsModal((s) => !s);
+    };
 
     console.log(user.name, " ", Date.now());
     return (
@@ -20,16 +26,18 @@ export default function TaskPage() {
                     <h1>Todo-Items</h1>
                     <button
                         className="btn btn-float btn-primary"
+                        onClick={toggleModal}
                     >
                         <span className="material-icons">add</span>
                     </button>
                 </div>
                 <div className="task-list">
                     {taskList.map((task) => {
-                        return <TaskItem {...task} />;
+                        return <TaskItem key={task.id} {...task} />;
                     })}
                 </div>
             </div>
+            {isModal ? <AddTask toggleModal={toggleModal} /> : ""}
         </div>
     );
 }

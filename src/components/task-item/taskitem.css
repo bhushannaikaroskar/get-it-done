@@ -5,6 +5,14 @@
     padding: 5px;
     margin: 5px;
     border-radius: 5px;
+    background-color: var(--OFF-WHITE);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.task-item:hover{
+    transform: scale(1.01);
+    background-color: var(--PRIMARY-200);
 }
 
 .task-title{
