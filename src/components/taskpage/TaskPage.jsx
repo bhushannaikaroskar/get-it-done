@@ -2,13 +2,26 @@ import React, { useState } from "react";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
 import { useUser } from "../../context/user-context/UserProvider";
 import AddTask from "../add-task/AddTask";
+import EditTask from "../edit-task/EditTask";
 import TaskItem from "../task-item/TaskItem";
 import "./taskpage.css";
 
 export default function TaskPage() {
     const { user } = useUser();
-    const { taskList} = useTasks();
+    const { taskList } = useTasks();
     const [isModal, setIsModal] = useState();
+    const [isEditTask, setIsEditTask] = useState();
+    const [taskObject, setTaskObject] = useState({});
+
+    const setTaskValues = (id, titleValue, desc, time, isCompleted) => {
+        setTaskObject({
+            id,
+            title: titleValue,
+            description: desc,
+            time,
+            isCompleted,
+        });
+    };
 
     const toggleModal = () => {
         setIsModal((s) => !s);
@@ -20,7 +33,9 @@ export default function TaskPage() {
             <p className="welcome-message">
                 Hey {user.name}, how you doing today?
             </p>
-            <p className="font-x-large">You have {taskList.length} tasks remaining today</p>
+            <p className="font-x-large">
+                You have {taskList.length} tasks remaining today
+            </p>
             <div className="tasks-container">
                 <div className="task-list-title">
                     <h1>Todo-Items</h1>
@@ -33,11 +48,23 @@ export default function TaskPage() {
                 </div>
                 <div className="task-list">
                     {taskList.map((task) => {
-                        return <TaskItem key={task.id} {...task} />;
+                        return (
+                            <TaskItem
+                                key={task.id}
+                                {...task}
+                                toggle={() => setIsEditTask((s) => !s)}
+                                setTaskValues={setTaskValues}
+                            />
+                        );
                     })}
                 </div>
             </div>
             {isModal ? <AddTask toggleModal={toggleModal} /> : ""}
+            {isEditTask ? (
+                <EditTask toggleModal={()=>setIsEditTask(s=>!s)} {...taskObject} />
+            ) : (
+                ""
+            )}
         </div>
     );
 }
