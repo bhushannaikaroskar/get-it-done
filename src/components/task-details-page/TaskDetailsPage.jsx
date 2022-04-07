@@ -9,11 +9,11 @@ export default function TaskDetailPage() {
     const navigate = useNavigate();
 
     const getTaskDetails = (list, id) => {
-        return list.find((task) => task.id == id);
+        return list.find((task) => task.id === id);
     };
 
     const task = getTaskDetails(taskList, taskId);
-    const { id,title, description, timer, isCompleted } = task;
+    const { id,title, description, isCompleted } = task;
     console.log(task)
 
     const toggleTask = (id) => {

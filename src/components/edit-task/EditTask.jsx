@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
-import { v4 as uuid } from "uuid";
 import "../add-task/addtask.css"
 
 export default function EditTask({toggleModal,id,title:titleValue,description:descValue,time:timeValue,isCompleted}) {
