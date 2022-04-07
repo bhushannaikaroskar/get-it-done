@@ -2,7 +2,7 @@
 .taskpage{    
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     color: var(--OFF-BLACK);
     padding: 4rem;
     background-color: var(--OFF-WHITE);

@@ -7,6 +7,7 @@ const initialState = [];
 const tasksReducer = (state, action) => {
     switch (action.type) {
         case "ADD_TASK":
+            console.log(action.payload)
             return [...state, action.payload];
         case "EDIT_TASK":
             return [...state.map((task)=>task.id === action.payload.id ? action.payload : task)];
