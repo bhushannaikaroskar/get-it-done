@@ -1,0 +1,50 @@
+
+.timer-data-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-data{
+    color: var(--PRIMARY-500);
+}
+
+.timer-data{
+    color: var(--OFF-BLACK);
+}
+
+.timer-cta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 2rem 0;
+}
+
+.timer-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 600;
+    padding:  10px;
+    border-radius: 99px;
+    background-color: var(--PRIMARY-200);
+    transition: background-color 0.3s ease-in;
+    cursor: pointer;
+    border:0;
+}
+
+.timer-button:hover{
+    background-color: var(--PRIMARY-500);
+}
+
+.play-button{
+    padding: 15px;
+}
+
+.play-button span{
+    
+    font-size: 3.6rem;
+}

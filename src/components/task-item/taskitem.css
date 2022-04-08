@@ -12,7 +12,7 @@
 
 .task-item:hover{
     transform: scale(1.01);
-    background-color: var(--PRIMARY-200);
+    background-color: var(--COLOR-SHADOW-PRIMARY);
 }
 
 .task-title{
