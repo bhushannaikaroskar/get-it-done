@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEditData } from "../../context/edit-task-context/EditDataProvider";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
 import { useUser } from "../../context/user-context/UserProvider";
 import AddTask from "../add-task/AddTask";
@@ -10,18 +11,8 @@ export default function TaskPage() {
     const { user } = useUser();
     const { taskList } = useTasks();
     const [isModal, setIsModal] = useState();
-    const [isEditTask, setIsEditTask] = useState();
-    const [taskObject, setTaskObject] = useState({});
 
-    const setTaskValues = (id, titleValue, desc, time, isCompleted) => {
-        setTaskObject({
-            id,
-            title: titleValue,
-            description: desc,
-            time,
-            isCompleted,
-        });
-    };
+    const {editData} = useEditData();
 
     const toggleModal = () => {
         setIsModal((s) => !s);
@@ -52,16 +43,14 @@ export default function TaskPage() {
                             <TaskItem
                                 key={task.id}
                                 {...task}
-                                toggle={() => setIsEditTask((s) => !s)}
-                                setTaskValues={setTaskValues}
                             />
                         );
                     })}
                 </div>
             </div>
             {isModal ? <AddTask toggleModal={toggleModal} /> : ""}
-            {isEditTask ? (
-                <EditTask toggleModal={()=>setIsEditTask(s=>!s)} {...taskObject} />
+            {editData.id ? (
+                <EditTask  />
             ) : (
                 ""
             )}

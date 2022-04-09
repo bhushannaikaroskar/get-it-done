@@ -5,13 +5,16 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import UserProvider from "./context/user-context/UserProvider";
 import TaskProvider from "./context/tasks-context/TaskProvider";
+import EditDataProvider from "./context/edit-task-context/EditDataProvider";
 
 ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <UserProvider>
                 <TaskProvider>
-                    <App />
+                    <EditDataProvider>
+                        <App />
+                    </EditDataProvider>
                 </TaskProvider>
             </UserProvider>
         </BrowserRouter>

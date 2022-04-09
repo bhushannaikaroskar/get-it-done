@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useEditData } from "../../context/edit-task-context/EditDataProvider";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
 import "./taskitem.css"
 
@@ -8,11 +9,14 @@ const style={
     color:"var(--GREY)"
 }
 
-export default function TaskItem({toggle,setTaskValues,...task}) {
-    const { id, title,description,isCompleted,time } = task;
+export default function TaskItem({...task}) {
+
+    const { id, title,isCompleted} = task;
     console.log("task item",task)
     const {dispatchTaskList} = useTasks()
     const navigate = useNavigate();
+
+    const {dispatchEditData} = useEditData()
     
     
 
@@ -23,8 +27,7 @@ export default function TaskItem({toggle,setTaskValues,...task}) {
 
     const editNote = (event)=>{
         event.stopPropagation();
-        toggle()
-        setTaskValues(id,title,description,time,isCompleted)
+        dispatchEditData({type:"UPDATE_DATA",payload:{...task}})
     }
 
     return (
