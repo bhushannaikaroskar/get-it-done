@@ -10,10 +10,7 @@ export default function TaskDetailPage() {
     const { taskList, dispatchTaskList } = useTasks();
     const navigate = useNavigate();
 
-    const getTaskDetails = (list, id) => {
-        return list.find((task) => {
-            return task.id === id});
-    };
+    const getTaskDetails = (list, id) => list.find((task) => task.id === id);
 
     const task = getTaskDetails(taskList, taskId);
     const { id,title, description, isCompleted } = task;

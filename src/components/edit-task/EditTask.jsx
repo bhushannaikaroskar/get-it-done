@@ -11,23 +11,25 @@ export default function EditTask() {
     const [descriptionError, setDescriptionError] = useState("");
     const [timeError, setTimeError] = useState();
 
+    const {id,title,description,time,isCompleted} = editData
+
 
     const editTask = () => {
-        if (editData.title.length < 1) {
+        if (title.length < 1) {
             setTitleError("Enter Title");
             return;
         } else {
             setTitleError("");
         }
 
-        if (editData.description.length < 1) {
+        if (description.length < 1) {
             setDescriptionError("Enter description");
             return;
         } else {
             setDescriptionError("");
         }
 
-        if (editData.time < 10 || editData.time > 60 || !editData.time) {
+        if (time < 10 || time > 60 || !time) {
             setTimeError("Time should be between 10 to 60 minutes");
             return;
         } else {
@@ -37,16 +39,14 @@ export default function EditTask() {
         dispatchTaskList({
             type: "EDIT_TASK",
             payload: {
-                id:editData.id,
-                title:editData.title,
-                description:editData.description,
-                time:editData.time,
-                isCompleted:editData.isCompleted,
+                id:id,
+                title:title,
+                description:description,
+                time:time,
+                isCompleted:isCompleted,
             },
         });
         dispatchEditData({type:"RESET"})
-        // toggleModal();
-        // resetTask();
     };
 
     return (
@@ -65,7 +65,7 @@ export default function EditTask() {
                                         : "")
                                 }
                                 placeholder="Add Title"
-                                value={editData.title}
+                                value={title}
                                 onChange={(e) =>
                                     dispatchEditData({
                                         type: "UPDATE_DATA",
@@ -88,7 +88,7 @@ export default function EditTask() {
                                         : "")
                                 }
                                 placeholder="Add Description"
-                                value={editData.description}
+                                value={description}
                                 onChange={(e) =>
                                     dispatchEditData({
                                         type: "UPDATE_DATA",
@@ -113,7 +113,7 @@ export default function EditTask() {
                                         : "")
                                 }
                                 placeholder="Add Time (in Minutes)"
-                                value={editData.time}
+                                value={time}
                                 onChange={(e) =>
                                     dispatchEditData({
                                         type: "UPDATE_DATA",

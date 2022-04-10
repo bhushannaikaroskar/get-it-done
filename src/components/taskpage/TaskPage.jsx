@@ -48,11 +48,9 @@ export default function TaskPage() {
                     })}
                 </div>
             </div>
-            {isModal ? <AddTask toggleModal={toggleModal} /> : ""}
-            {editData.id ? (
+            {isModal && <AddTask toggleModal={toggleModal} /> }
+            {editData.id && (
                 <EditTask  />
-            ) : (
-                ""
             )}
         </div>
     );
