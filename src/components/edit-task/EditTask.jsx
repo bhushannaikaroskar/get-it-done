@@ -1,21 +1,18 @@
 import React, { useState } from "react";
+import { useEditData } from "../../context/edit-task-context/EditDataProvider";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
-import "../add-task/addtask.css"
+import "../add-task/addtask.css";
 
-export default function EditTask({toggleModal,id,title:titleValue,description:descValue,time:timeValue,isCompleted}) {
+export default function EditTask() {
+    const { editData, dispatchEditData } = useEditData();
+
     const { dispatchTaskList } = useTasks();
-    const [title, setTitle] = useState(titleValue??"");
     const [titleError, setTitleError] = useState("");
-    const [description, setDescription] = useState(descValue??"");
     const [descriptionError, setDescriptionError] = useState("");
-    const [time, setTime] = useState(timeValue??undefined);
     const [timeError, setTimeError] = useState();
 
-    const resetTask = () => {
-        setDescription("");
-        setTitle("");
-        setTime();
-    };
+    const {id,title,description,time,isCompleted} = editData
+
 
     const editTask = () => {
         if (title.length < 1) {
@@ -42,15 +39,14 @@ export default function EditTask({toggleModal,id,title:titleValue,description:de
         dispatchTaskList({
             type: "EDIT_TASK",
             payload: {
-                id,
-                title,
-                description,
-                time,
-                isCompleted,
+                id:id,
+                title:title,
+                description:description,
+                time:time,
+                isCompleted:isCompleted,
             },
         });
-        toggleModal();
-        resetTask();
+        dispatchEditData({type:"RESET"})
     };
 
     return (
@@ -70,7 +66,15 @@ export default function EditTask({toggleModal,id,title:titleValue,description:de
                                 }
                                 placeholder="Add Title"
                                 value={title}
-                                onChange={(e) => setTitle(e.target.value)}
+                                onChange={(e) =>
+                                    dispatchEditData({
+                                        type: "UPDATE_DATA",
+                                        payload: {
+                                            ...editData,
+                                            title: e.target.value,
+                                        },
+                                    })
+                                }
                             />
                             <span className="input-message">{titleError}</span>
                         </div>
@@ -85,7 +89,15 @@ export default function EditTask({toggleModal,id,title:titleValue,description:de
                                 }
                                 placeholder="Add Description"
                                 value={description}
-                                onChange={(e) => setDescription(e.target.value)}
+                                onChange={(e) =>
+                                    dispatchEditData({
+                                        type: "UPDATE_DATA",
+                                        payload: {
+                                            ...editData,
+                                            description: e.target.value,
+                                        },
+                                    })
+                                }
                             />
                             <span className="input-message">
                                 {descriptionError}
@@ -103,7 +115,13 @@ export default function EditTask({toggleModal,id,title:titleValue,description:de
                                 placeholder="Add Time (in Minutes)"
                                 value={time}
                                 onChange={(e) =>
-                                    setTime(Number(e.target.value))
+                                    dispatchEditData({
+                                        type: "UPDATE_DATA",
+                                        payload: {
+                                            ...editData,
+                                            time: e.target.value,
+                                        },
+                                    })
                                 }
                             />
                             <span className="input-message">{timeError}</span>
@@ -120,7 +138,7 @@ export default function EditTask({toggleModal,id,title:titleValue,description:de
                         </button>
                         <button
                             className="btn btn-outline btn-outline-primary card-btn "
-                            onClick={toggleModal}
+                            onClick={() => dispatchEditData({ type: "RESET" })}
                         >
                             Cancel
                         </button>

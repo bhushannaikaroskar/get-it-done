@@ -1,21 +1,19 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
+import Timer from "../timer/Timer";
 import "./task-details.css";
 
 export default function TaskDetailPage() {
     const { taskId } = useParams();
+    console.log(taskId)
     const { taskList, dispatchTaskList } = useTasks();
     const navigate = useNavigate();
 
-    const getTaskDetails = (list, id) => {
-        return list.find((task) => task.id === id);
-    };
+    const getTaskDetails = (list, id) => list.find((task) => task.id === id);
 
     const task = getTaskDetails(taskList, taskId);
     const { id,title, description, isCompleted } = task;
-    console.log(task)
-
     const toggleTask = (id) => {
         dispatchTaskList({ type: "TASK_COMPLETE",payload:{id} });
     };
@@ -26,7 +24,7 @@ export default function TaskDetailPage() {
         <div className="task-detail-page">
             <div className="grid-container">
                 <div className="pomodoro-timer">
-                    <h1>Timer</h1>
+                    <Timer {...task}/>
                 </div>
                 <div className="task-details-container">
                     <h1 className="task-detail-title">{title}</h1>
@@ -38,7 +36,7 @@ export default function TaskDetailPage() {
                         >
                             {!isCompleted ? "Done" : "Undo"}
                         </button>
-                        <button class="btn btn-outline" onClick={()=>navigate("/tasks")}>Go Back</button>
+                        <button className="btn btn-outline" onClick={()=>navigate("/tasks")}>Go Back</button>
                     </div>
                 </div>
             </div>
