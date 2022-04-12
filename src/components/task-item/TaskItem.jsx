@@ -12,7 +12,6 @@ const style={
 export default function TaskItem({...task}) {
 
     const { id, title,isCompleted} = task;
-    console.log("task item",task)
     const {dispatchTaskList} = useTasks()
     const navigate = useNavigate();
 

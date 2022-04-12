@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { v4 as uuid } from "uuid";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import "./timer.css";
 
 const playingStyle = {
@@ -49,27 +50,27 @@ export default function Timer({ time }) {
                 isPlaying={isPlaying}
                 duration={time * 60}
                 size={275}
-                strokeWidth={20}
+                strokeWidth={22}
                 colors={["#00cf60", "#00cf60"]}
                 updateInterval={0.05}
                 colorsTime={[time * 60, 0]}
             >
-                {({ remainingTime }) => (
-                    <TimerData
-                        remainingTime={remainingTime}
-                        originalTime={time}
-                    />
-                )}
+                {({ remainingTime }) => {
+                return <TimerData
+                    remainingTime={remainingTime}
+                    originalTime={time}
+                />}    
+                }
             </CountdownCircleTimer>
             <div className="timer-cta">
                 <button style={!isPlaying?playingStyle:{}} className="timer-button" onClick={pause}>
-                    <span class="material-icons btn-icon-lg">pause</span>
+                    <span className="material-icons btn-icon-lg">pause</span>
                 </button>
                 <button style={isPlaying?playingStyle:{}} className="timer-button play-button" onClick={play}>
-                    <span class="material-icons ">play_arrow</span>
+                    <span className="material-icons ">play_arrow</span>
                 </button>
                 <button className="timer-button" onClick={reset}>
-                    <span class="material-icons btn-icon-lg">restart_alt</span>
+                    <span className="material-icons btn-icon-lg">restart_alt</span>
                 </button>
             </div>
         </div>

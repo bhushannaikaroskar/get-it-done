@@ -1,12 +1,14 @@
 import "./homepage.css";
 import React, { useState } from "react";
 import { useUser } from "../../context/user-context/UserProvider";
-import {  useNavigate } from "react-router-dom";
+import {  Navigate, useNavigate } from "react-router-dom";
 
 export default function HomePage() {
     const { addName } = useUser();
     const [name, setName] = useState();
+    const [error,setError] = useState();
     const navigate = useNavigate();
+    const {user} = useUser()
 
     const updateName = (event)=>{
         if(event.charCode === 13){
@@ -14,12 +16,13 @@ export default function HomePage() {
                 addName(name);
                 navigate("/tasks")
             }else{
-                console.log("Please enter valid name")
+                setError("Please enter a valid name")
+                setTimeout(()=>setError(""),5000)
             }
         }
     } 
 
-    return (
+    return user.isVerified?<Navigate to="/tasks"/>:(
         <div className="homepage">
             <h1>What's your name?</h1>
             <input
@@ -29,6 +32,7 @@ export default function HomePage() {
                 onChange={(e) => setName(e.target.value)}
                 onKeyPress={updateName}
             />
+             <div className="error-text">{error}</div>
         </div>
     );
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import Timer from "../timer/Timer";
 import "./task-details.css";
 
 export default function TaskDetailPage() {
     const { taskId } = useParams();
-    console.log(taskId)
     const { taskList, dispatchTaskList } = useTasks();
     const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ export default function TaskDetailPage() {
         dispatchTaskList({ type: "TASK_COMPLETE",payload:{id} });
     };
 
-
+    useDocumentTitle(title)
 
     return task ? (
         <div className="task-detail-page">

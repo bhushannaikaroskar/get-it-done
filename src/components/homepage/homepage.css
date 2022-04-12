@@ -27,3 +27,10 @@
 .name-input:focus-visible{
     outline: none;
 }
+
+.error-text{
+    color: var(--GREY);
+    padding: 2rem;
+    font-size: 2.4rem;
+    transition: all 0.5s ease-in;
+}
