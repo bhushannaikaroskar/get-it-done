@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEditData } from "../../context/edit-task-context/EditDataProvider";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
 import { useUser } from "../../context/user-context/UserProvider";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import AddTask from "../add-task/AddTask";
 import EditTask from "../edit-task/EditTask";
 import TaskItem from "../task-item/TaskItem";
@@ -11,14 +12,14 @@ export default function TaskPage() {
     const { user } = useUser();
     const { taskList } = useTasks();
     const [isModal, setIsModal] = useState();
-
     const {editData} = useEditData();
+
+    useDocumentTitle("Tasks")
 
     const toggleModal = () => {
         setIsModal((s) => !s);
     };
 
-    console.log(user.name, " ", Date.now());
     return (
         <div className="taskpage">
             <p className="welcome-message">
@@ -34,7 +35,7 @@ export default function TaskPage() {
                         className="btn btn-float btn-primary"
                         onClick={toggleModal}
                     >
-                        <span className="material-icons">add</span>
+                        <span className="material-icons btn-icon-lg">add</span>
                     </button>
                 </div>
                 <div className="task-list">
