@@ -35,7 +35,7 @@ export default function TaskPage() {
                         className="btn btn-float btn-primary"
                         onClick={toggleModal}
                     >
-                        <span className="material-icons">add</span>
+                        <span className="material-icons btn-icon-lg">add</span>
                     </button>
                 </div>
                 <div className="task-list">
