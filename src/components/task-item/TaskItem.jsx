@@ -49,7 +49,7 @@ export default function TaskItem({ ...task }) {
 				/>
 				<label
 					className="task-checkbox-label"
-					for={id}
+					htmlFor={id}
 					onClick={(e) => e.stopPropagation()}
 				></label>
 				<div style={isCompleted ? style : {}} className="task-title">

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
+import { useParams } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import { useTasks } from "../../context/tasks-context/TaskProvider";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
 import "./timer.css";
 
@@ -14,9 +16,7 @@ const TimerData = ({ remainingTime, originalTime }) => {
     const seconds =
         remainingTime % 60 < 10 ? `0${remainingTime % 60}` : remainingTime % 60;
 
-    useEffect(() => {
-        document.title = `${minutes}m : ${seconds}s`;
-    });
+    useDocumentTitle(`${minutes}m : ${seconds}s`)
 
     return (
         <div className="timer-data-container">
@@ -29,6 +29,17 @@ const TimerData = ({ remainingTime, originalTime }) => {
 export default function Timer({ time }) {
     const [isPlaying, setIsplaying] = useState(false);
     const [key, setKey] = useState(uuid());
+    const {taskList} = useTasks()
+    const {taskId} = useParams()
+    
+
+    const task = taskList.find((task)=>task.id === taskId)
+    const {isCompleted} = task
+    useEffect(()=>{
+        if(isCompleted){
+            setIsplaying(false)
+        }
+    },[isCompleted])
 
     const play = () => {
         setIsplaying(true);
@@ -42,6 +53,8 @@ export default function Timer({ time }) {
         setIsplaying(false);
         setKey(uuid());
     };
+
+
 
     return (
         <div>
@@ -63,13 +76,13 @@ export default function Timer({ time }) {
                 }
             </CountdownCircleTimer>
             <div className="timer-cta">
-                <button style={!isPlaying?playingStyle:{}} className="timer-button" onClick={pause}>
+                <button style={!isPlaying?playingStyle:{}} className="timer-button" onClick={pause} disabled={isCompleted}>
                     <span className="material-icons btn-icon-lg">pause</span>
                 </button>
-                <button style={isPlaying?playingStyle:{}} className="timer-button play-button" onClick={play}>
+                <button style={isPlaying?playingStyle:{}} className="timer-button play-button" onClick={play} disabled={isCompleted}>
                     <span className="material-icons ">play_arrow</span>
                 </button>
-                <button className="timer-button" onClick={reset}>
+                <button className="timer-button" onClick={reset} disabled={isCompleted}>
                     <span className="material-icons btn-icon-lg">restart_alt</span>
                 </button>
             </div>
