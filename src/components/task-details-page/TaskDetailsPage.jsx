@@ -51,7 +51,7 @@ export default function TaskDetailPage() {
                             {!isCompleted ? "Done" : "Undo"}
                         </button>
                         <button
-                            className="btn btn-outline"
+                            className="btn btn-outline btn-outline-primary"
                             onClick={() => navigate("/tasks")}
                         >
                             Go Back
