@@ -2,10 +2,12 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { HomePage, TaskDetailPage, TaskPage } from "./components";
 import PrivateRoute from "./components/PrivateRoute";
+import Navbar from "./components/navbar/Navbar";
 
 function App() {
 	return (
 		<div className="App">
+			<Navbar/>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route element={<PrivateRoute />}>

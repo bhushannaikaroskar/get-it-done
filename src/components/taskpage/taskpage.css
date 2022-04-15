@@ -2,7 +2,7 @@
 .taskpage{    
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    flex: 2;
     color: var(--OFF-BLACK);
     padding: 4rem;
     background-color: var(--OFF-WHITE);
@@ -35,4 +35,28 @@
 
 .task-list{
     margin: 2rem 0;
+}
+
+
+
+/* filter */
+
+select{
+    padding: 5px;
+    color: var(--OFF-BLACK);
+    border: none;
+    border-radius: 5px;
+    background-color: var(--WHITE);
+    
+}
+
+select::selection, select:hover, select:active{
+    background-color: var(--PRIMARY-500);
+}
+
+option{
+    background-color: var(--OFF-WHITE);
+    margin: 1rem;
+    font-size: 1.6rem;
+    color: var(--OFF-BLACK);
 }

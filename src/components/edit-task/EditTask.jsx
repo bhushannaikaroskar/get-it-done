@@ -10,9 +10,9 @@ export default function EditTask() {
     const [titleError, setTitleError] = useState("");
     const [descriptionError, setDescriptionError] = useState("");
     const [timeError, setTimeError] = useState();
+    const [tag, setTag] = useState("");
 
-    const {id,title,description,time,isCompleted} = editData
-
+    const { id, title, description, time, isCompleted, tags } = editData;
 
     const editTask = () => {
         if (title.length < 1) {
@@ -39,22 +39,35 @@ export default function EditTask() {
         dispatchTaskList({
             type: "EDIT_TASK",
             payload: {
-                id:id,
-                title:title,
-                description:description,
-                time:time,
-                isCompleted:isCompleted,
+                id: id,
+                title: title,
+                description: description,
+                time: time,
+                isCompleted: isCompleted,
+                tags,
             },
         });
-        dispatchEditData({type:"RESET"})
+        dispatchEditData({ type: "RESET" });
     };
 
+    const tagInputHandler = (event) => {
+        if (event.key === "Enter") {
+            if (!tags.find((t) => t === tag)) {
+                dispatchEditData({
+                    type: "UPDATE_DATA",
+                    payload: { tags: [...tags, tag] },
+                });
+            }
+            setTag("");
+        }
+    };
+	
     return (
         <div className="modal-container modal-center modal-active">
             <div className="add-task-container">
                 <div className="p-2 ">
                     <div className="task-input-wrapper">
-                        <h2 className="card-title">Add Task</h2>
+                        <h2 className="card-title">Edit Task</h2>
                         <div className="input-wrapper">
                             <input
                                 type="text"
@@ -125,6 +138,50 @@ export default function EditTask() {
                                 }
                             />
                             <span className="input-message">{timeError}</span>
+                        </div>
+                        <div>
+                            <div className="tags-container">
+                                {tags.map((tagName) => {
+                                    return (
+                                        <div className="tag">
+                                            <div className="tag-title">
+                                                {tagName}
+                                            </div>
+                                            <button
+                                                className="tag-close"
+                                                onClick={() => {
+                                                    dispatchEditData({
+                                                        type: "UPDATE_DATA",
+                                                        payload: {
+                                                            tags: [
+                                                                ...tags,
+                                                            ].filter(
+                                                                (t) =>
+                                                                    t !==
+                                                                    tagName
+                                                            ),
+                                                        },
+                                                    });
+                                                }}
+                                            >
+                                                <span className="material-icons btn-icon-sm">
+                                                    close
+                                                </span>
+                                            </button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <input
+                                type="text"
+                                value={tag}
+                                placeholder="Add Tags(optional)"
+                                className="input-tag"
+                                onKeyDownCapture={tagInputHandler}
+                                onChange={(e) => {
+                                    setTag(e.target.value);
+                                }}
+                            />
                         </div>
                     </div>
                     <div className="add-task-cta w-100">

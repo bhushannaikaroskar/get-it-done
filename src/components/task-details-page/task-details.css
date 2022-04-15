@@ -1,7 +1,7 @@
 .task-detail-page {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    flex: 2;
     color: var(--OFF-BLACK);
     padding: 4rem;
     background-color: var(--OFF-WHITE);
@@ -43,6 +43,12 @@
 .task-detail-description{
     font-size: 1.8rem;
     padding: 1rem 0;
+}
+
+.task-detail-tags{
+    font-size: 2.4rem;
+    font-weight: 600;
+    padding: 1.5rem 0;
 }
 
 .task-details-cta{

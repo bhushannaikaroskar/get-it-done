@@ -35,6 +35,7 @@
     background-color: var(--LIGHT-GREY); 
     height: 200px;
     resize: none;
+    color: var(--OFF-BLACK);
 
 }
 .input-description:focus-visible{

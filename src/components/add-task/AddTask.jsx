@@ -11,6 +11,8 @@ export default function AddTask({ toggleModal }) {
     const [descriptionError, setDescriptionError] = useState("");
     const [time, setTime] = useState();
     const [timeError, setTimeError] = useState();
+    const [tagsList, setTagsList] = useState([]);
+    const [tag, setTag] = useState("");
 
     const resetTask = () => {
         setDescription("");
@@ -48,10 +50,20 @@ export default function AddTask({ toggleModal }) {
                 description,
                 time,
                 isCompleted: false,
+                tags: [...tagsList],
             },
         });
         toggleModal();
         resetTask();
+    };
+
+    const tagInputHandler = (event) => {
+        if (event.key === "Enter") {
+            if (!tagsList.find((t) => t === tag)) {
+                setTagsList((s) => [...s, tag]);
+            }
+            setTag("");
+        }
     };
 
     return (
@@ -108,6 +120,43 @@ export default function AddTask({ toggleModal }) {
                                 }
                             />
                             <span className="input-message">{timeError}</span>
+                        </div>
+                        <div>
+                            <div className="tags-container">
+                                {tagsList.map((tagName) => {
+                                    return (
+                                        <div className="tag">
+                                            <div className="tag-title">
+                                                {tagName}
+                                            </div>
+                                            <button
+                                                className="tag-close"
+                                                onClick={() =>
+                                                    setTagsList((s) =>
+                                                        [...s].filter(
+                                                            (t) => t !== tagName
+                                                        )
+                                                    )
+                                                }
+                                            >
+                                                <span className="material-icons btn-icon-sm">
+                                                    close
+                                                </span>
+                                            </button>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                            <input
+                                type="text"
+                                value={tag}
+                                placeholder="Add Tags(optional)"
+                                className="input-tag"
+                                onKeyDownCapture={tagInputHandler}
+                                onChange={(e) => {
+                                    setTag(e.target.value);
+                                }}
+                            />
                         </div>
                     </div>
                     <div className="add-task-cta w-100">
