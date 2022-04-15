@@ -52,8 +52,9 @@ export default function EditTask() {
 
     const tagInputHandler = (event) => {
         if (event.key === "Enter") {
-            console.log("ENtering")
-            dispatchEditData({type:"UPDATE_DATA",payload:{tags:[...tags,tag]}})
+			if(!tags.find((t)=>t === tag)){
+				dispatchEditData({type:"UPDATE_DATA",payload:{tags:[...tags,tag]}})
+			}
 			setTag("");
 		}
     }

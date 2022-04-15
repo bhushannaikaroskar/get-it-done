@@ -28,7 +28,6 @@ export default function TaskItem({ ...task }) {
 
 	const checkBoxHandler = (event) => {
 		event.stopPropagation();
-		console.log("checkbox called");
 		dispatchTaskList({ type: "TASK_COMPLETE", payload: { id } });
 	};
 
@@ -57,10 +56,10 @@ export default function TaskItem({ ...task }) {
 				</div>
 			</div>
 			<div className="task-item-cta">
-				<button className="btn btn-icon" onClick={editNote}>
+				<button className="btn btn-icon icon-color-primary" onClick={editNote}>
 					<span className="material-icons">edit_note</span>
 				</button>
-				<button className="btn btn-icon" onClick={deleteNote}>
+				<button className="btn btn-icon icon-color-primary" onClick={deleteNote}>
 					<span className="material-icons">delete</span>
 				</button>
 			</div>

@@ -38,6 +38,7 @@ export default function TaskDetailPage() {
 								</div>
 							);
 						})}
+						{tags.length === 0 && <div className="font-grey font-normal">No tags</div>}
 					</div>
 					<div className="p-2"></div>
 					<div className="task-details-cta">
