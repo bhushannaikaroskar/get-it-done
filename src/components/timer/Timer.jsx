@@ -69,6 +69,9 @@ export default function Timer({ time }) {
                 colorsTime={[time * 60, 0]}
             >
                 {({ remainingTime }) => {
+                    if(remainingTime === 0){
+                        setIsplaying(false )
+                    }
                 return <TimerData
                     remainingTime={remainingTime}
                     originalTime={time}

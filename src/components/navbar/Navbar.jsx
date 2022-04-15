@@ -1,21 +1,17 @@
 import React from "react";
-import { useTheme } from "../context/theme-content/ThemeProvider";
-
-const logoStyle = {
-    display: "flex",
-    justifyCOntent: "center",
-    alignItems: "center",
-};
+import { NavLink } from "react-router-dom";
+import { useTheme } from "../../context/theme-content/ThemeProvider";
+import "./navbar.css"
 
 export default function Navbar() {
     const { theme, toggleTheme } = useTheme();
 
     return (
         <nav class="navbar">
-            <div style={logoStyle} class="nav-logo">
-                <h1 style={{ color: "var(--OFF-BLACK)" }}>
+            <div class="nav-logo">
+                <NavLink to="/tasks">
                     Get It <span className="font-primary">Done</span>
-                </h1>
+                </NavLink>
             </div>
             <div class="nav-items">
                 <button
