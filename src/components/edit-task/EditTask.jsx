@@ -61,7 +61,7 @@ export default function EditTask() {
             setTag("");
         }
     };
-	
+
     return (
         <div className="modal-container modal-center modal-active">
             <div className="add-task-container">
@@ -140,6 +140,7 @@ export default function EditTask() {
                             <span className="input-message">{timeError}</span>
                         </div>
                         <div>
+                            <div className="font-normal fw-600 p-y-1">Tags added:</div>
                             <div className="tags-container">
                                 {tags.map((tagName) => {
                                     return (

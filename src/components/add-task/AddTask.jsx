@@ -122,6 +122,7 @@ export default function AddTask({ toggleModal }) {
                             <span className="input-message">{timeError}</span>
                         </div>
                         <div>
+                            <div className="font-normal fw-600 p-y-1">Tags added:</div>
                             <div className="tags-container">
                                 {tagsList.map((tagName) => {
                                     return (

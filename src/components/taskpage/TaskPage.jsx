@@ -54,7 +54,7 @@ export default function TaskPage() {
                 Hey {user.name}, how you doing today?
             </p>
             <p className="font-x-large">
-                You have {taskList.length} tasks remaining today
+                You have {taskList.length} {taskList.length>1 ? "tasks" : "task"} remaining today
             </p>
             <div className="tasks-container">
                 <div className="task-list-title">
