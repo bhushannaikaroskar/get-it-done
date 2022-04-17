@@ -1,18 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../../context/theme-content/ThemeProvider";
-import "./navbar.css"
 
 export default function Navbar() {
     const { theme, toggleTheme } = useTheme();
 
     return (
         <nav className="navbar">
-            <div className="nav-logo">
-                <NavLink to="/tasks">
-                    Get It <span className="font-primary">Done</span>
+            
+                <NavLink className="nav-logo" to="/tasks">
+                    {theme === "dark" ? <img src="/images/gid-light-logo.png" alt="logo"/> : <img src="/images/gid-dark-logo.png" alt="logo"/>}
+                    {/* Get It <span className="font-primary">Done</span> */}
                 </NavLink>
-            </div>
+            
             <div className="nav-items">
                 <button
                     className="btn btn-link-secondary justify-content-start"
