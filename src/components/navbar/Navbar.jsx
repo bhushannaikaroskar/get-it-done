@@ -7,24 +7,24 @@ export default function Navbar() {
     const { theme, toggleTheme } = useTheme();
 
     return (
-        <nav class="navbar">
-            <div class="nav-logo">
+        <nav className="navbar">
+            <div className="nav-logo">
                 <NavLink to="/tasks">
                     Get It <span className="font-primary">Done</span>
                 </NavLink>
             </div>
-            <div class="nav-items">
+            <div className="nav-items">
                 <button
-                    class="btn btn-link-secondary justify-content-start"
+                    className="btn btn-link-secondary justify-content-start"
                     onClick={toggleTheme}
                 >
-                    <div class="badge-container flex flex-column">
+                    <div className="badge-container flex flex-column">
                         {theme === "light" ? (
-                            <span class="material-icons font-x-large">
+                            <span className="material-icons font-x-large">
                                 dark_mode
                             </span>
                         ) : (
-                            <span class="material-icons font-x-large">
+                            <span className="material-icons font-x-large">
                                 light_mode
                             </span>
                         )}

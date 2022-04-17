@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTasks } from "../../context/tasks-context/TaskProvider";
 import useDocumentTitle from "../../hooks/useDocumentTitle";
@@ -9,6 +9,7 @@ export default function TaskDetailPage() {
     const { taskId } = useParams();
     const { taskList, dispatchTaskList } = useTasks();
     const navigate = useNavigate();
+    const [width,setWidth] = useState(0)
 
     const getTaskDetails = (list, id) => list.find((task) => task.id === id);
 
@@ -19,15 +20,21 @@ export default function TaskDetailPage() {
     };
 
     useDocumentTitle(title);
+    const ref = useRef(null);
+
+    useEffect(()=>{
+        console.log("width",ref.current?ref.current.offsetWidth:0)
+        setWidth(ref?.current?.offsetWidth ?? 0)
+    },[ref.current])
 
     return task ? (
         <div className="task-detail-page">
-            <div className="grid-container">
+            <div ref={ref} className="grid-container">
                 <div className="pomodoro-timer">
-                    <Timer {...task} />
+                    <Timer {...task} width={width-62} />
                 </div>
                 <div className="task-details-container">
-                    <h1 className="task-detail-title">{title}</h1>
+                    <h1 className="task-detail-title" title={title}>{title}</h1>
                     <div className="task-detail-description">{description}</div>
                     <div className="task-detail-tags">Tags:</div>
                     <div className="tags-container">
