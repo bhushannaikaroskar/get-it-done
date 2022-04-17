@@ -40,5 +40,10 @@ Get It Done is a pomodoro app that helps to list all the task and complete them 
 
 - The data is saved to localstorage and user can visit the app anytime and continue with it's previous tasks list
 
-- We have tags feature added which is optional which adding tasks. You can filter all teh tasks based on the tags you have added.
+- We have tags feature added which is optional which adding tasks. You can filter all the tasks based on the tags you have added.
 
+### 6. Responsiveness and Title Sync
+
+- add responsive screen and dark mode to the app.
+
+- While playing the timer you can see the title is also in sync with the timer on page so you get to see the available time while being on other tab

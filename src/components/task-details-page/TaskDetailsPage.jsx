@@ -29,7 +29,7 @@ export default function TaskDetailPage() {
     useEffect(()=>{
         console.log("width",ref.current?ref.current.offsetWidth:0)
         setWidth(ref?.current?.offsetWidth ?? 0)
-    },[ref.current])
+    },[ref])
 
     console.log(date)
 
