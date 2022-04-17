@@ -5,6 +5,8 @@ import useDocumentTitle from "../../hooks/useDocumentTitle";
 import Timer from "../timer/Timer";
 import "./task-details.css";
 
+const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+
 export default function TaskDetailPage() {
     const { taskId } = useParams();
     const { taskList, dispatchTaskList } = useTasks();
@@ -14,10 +16,12 @@ export default function TaskDetailPage() {
     const getTaskDetails = (list, id) => list.find((task) => task.id === id);
 
     const task = getTaskDetails(taskList, taskId);
-    const { id, title, description, isCompleted, tags } = task;
+    const { id, title, description, isCompleted, tags,date } = task;
     const toggleTask = (id) => {
         dispatchTaskList({ type: "TASK_COMPLETE", payload: { id } });
     };
+
+    const newDate = new Date(date)
 
     useDocumentTitle(title);
     const ref = useRef(null);
@@ -26,6 +30,8 @@ export default function TaskDetailPage() {
         console.log("width",ref.current?ref.current.offsetWidth:0)
         setWidth(ref?.current?.offsetWidth ?? 0)
     },[ref.current])
+
+    console.log(date)
 
     return task ? (
         <div className="task-detail-page">
@@ -64,6 +70,7 @@ export default function TaskDetailPage() {
                             Go Back
                         </button>
                     </div>
+                    {date && <div className="font-normal font-dark-gray fw-500">Date created: {`${newDate.getDate()} ${months[newDate.getMonth()]}, ${1900+ newDate.getYear()}`}</div>}
                 </div>
             </div>
         </div>

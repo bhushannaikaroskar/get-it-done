@@ -51,6 +51,7 @@ export default function AddTask({ toggleModal }) {
                 time,
                 isCompleted: false,
                 tags: [...tagsList],
+                date: new Date()
             },
         });
         toggleModal();
