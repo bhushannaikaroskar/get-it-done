@@ -60,7 +60,7 @@ export default function AddTask({ toggleModal }) {
 
     const tagInputHandler = (event) => {
         if (event.key === "Enter") {
-            if (!tagsList.find((t) => t === tag)) {
+            if (tagsList.findIndex((t) => t === tag) === -1 && tag !== "") {
                 setTagsList((s) => [...s, tag]);
             }
             setTag("");
