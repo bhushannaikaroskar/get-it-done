@@ -27,11 +27,8 @@ export default function TaskDetailPage() {
     const ref = useRef(null);
 
     useEffect(()=>{
-        console.log("width",ref.current?ref.current.offsetWidth:0)
         setWidth(ref?.current?.offsetWidth ?? 0)
     },[ref])
-
-    console.log(date)
 
     return task ? (
         <div className="task-detail-page">

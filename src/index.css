@@ -7,6 +7,14 @@
     box-sizing: border-box;
 }
 
+:root{
+    --COLOR-HOME-ALPHA : #ffffffcc
+}
+
+:root[data-theme="dark"]{
+    --COLOR-HOME-ALPHA : #000000aa
+}
+
 p{
     font-size: 1.6rem;
 }

@@ -66,8 +66,9 @@ export default function TaskPage() {
                             name="filters"
                             id="filters"
                             onChange={filterHandler}
+                            value="All"
                         >
-                            <option value="All" selected="selected">
+                            <option value="All" >
                                 All
                             </option>
                             {uniqueTags.map((tag) => {
